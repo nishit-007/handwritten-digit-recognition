@@ -10,7 +10,7 @@ module seven_seg_drive #(
     output reg  [7:0]                   cathodes
 );
 
-    localparam [0:9][6:0] digit_to_logic_mapping = {      // This mapping is active low
+    localparam [0:9][6:0] digit_to_logic_mapping = {      
             7'b0000001,     // 0
             7'b1001111,     // 1
             7'b0010010,     // 2
@@ -24,8 +24,8 @@ module seven_seg_drive #(
         };
 
     reg [3:0] i;
-    reg [3:0]digits;                  // Store the BCD digits as they are converted
-    reg [1:0] current_digit;                // Keep track of which display to activate
+    reg [3:0]digits;                  
+    reg [1:0] current_digit;                
 
     reg clk;
     reg [SEV_SEG_PRESCALAR:0] local_counter;
@@ -51,12 +51,12 @@ module seven_seg_drive #(
         end
     end
 
-    // Choosing which digit to display
+    
     always @(posedge clk) begin
         current_digit <= current_digit + 1;
     end
 
-    // Convert the integer to 4-digit BCD
+   
     always @(posedge clk) begin        
        digits = {4'h0, 4'h0, 4'h0, 4'h0};
         
@@ -76,7 +76,7 @@ module seven_seg_drive #(
        end   
     end
 
-    // Converting the BCD digits and the decimal point signal into actual outputs
+    
     always @(current_digit, decimal_points) begin
         anodes      <= ~(1<<current_digit);
         cathodes    <= {
@@ -85,5 +85,6 @@ module seven_seg_drive #(
         };
 
     end
+
 
 endmodule
