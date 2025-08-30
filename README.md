@@ -1,5 +1,4 @@
-# Handwritten-Digit-Recognition
-CNN for Handwritten Digit Recognition , UART Transmission To Basys3 FPGA for Display
+
 # Handwritten Digit Recognition with CNN and FPGA
 
 This project implements a Convolutional Neural Network (CNN) for recognizing handwritten digits from the MNIST dataset. The model is trained using PyTorch, and a Pygame interface allows real-time digit drawing and prediction. Predictions are sent via UART to a Basys3 FPGA, where Verilog modules process and display them on a 7-segment display.
