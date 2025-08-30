@@ -1,10 +1,10 @@
 module uart_rx
-#(parameter CLKS_PER_BIT = 10417) // For 9600 baud with 100 MHz clock
+#(parameter CLKS_PER_BIT = 10417) 
 (
-    input        clk,         // System clock
-    input        rx,          // UART RX line
-    output reg [7:0] data,    // Received byte
-    output reg   data_valid   // High when byte is ready
+    input        clk,         
+    input        rx,          
+    output reg [7:0] data,    
+    output reg   data_valid   
 );
 
     localparam IDLE         = 3'b000;
@@ -26,7 +26,7 @@ module uart_rx
                 clk_count  <= 0;
                 bit_index  <= 0;
 
-                if (rx == 0) begin // Start bit detected
+                if (rx == 0) begin 
                     state <= START;
                 end
             end
@@ -37,7 +37,7 @@ module uart_rx
                         clk_count <= 0;
                         state     <= DATA;
                     end else begin
-                        state <= IDLE; // False start bit
+                        state <= IDLE; 
                     end
                 end else begin
                     clk_count <= clk_count + 1;
